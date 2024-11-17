@@ -8,7 +8,7 @@ const Login = ({ onLogin }) => {
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/auth/status', {
+        const response = await fetch('https://xeno-backend-ovva.onrender.com/api/auth/status', {
           credentials: 'include'
         });
         const data = await response.json();
@@ -25,7 +25,7 @@ const Login = ({ onLogin }) => {
   }, [onLogin, navigate]);
 
   const handleGoogleLogin = () => {
-    window.location.href = 'http://localhost:5000/api/auth/google';
+    window.location.href = 'https://xeno-backend-ovva.onrender.com/api/auth/google';
   };
 
   return (
