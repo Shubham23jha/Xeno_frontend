@@ -28,7 +28,7 @@ const App = () => {
   const handleLogout = async () => {
     try {
       const response = await fetch(
-        `https://shreycrmbackend.onrender.com/api/auth/logout`,
+        `https://xeno-backend-ovva.onrender.com/api/auth/logout`,
         {
           method: "POST",
           credentials: "include",

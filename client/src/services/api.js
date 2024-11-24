@@ -2,7 +2,7 @@
 const postRequest = async (url, data) => {
   try {
     const response = await fetch(
-      `https://shreycrmbackend.onrender.com/api${url}`,
+      `https://xeno-backend-ovva.onrender.com/api${url}`,
       {
         method: "POST",
         headers: {
@@ -25,7 +25,7 @@ const postRequest = async (url, data) => {
 const getRequest = async (url) => {
   try {
     const response = await fetch(
-      `https://shreycrmbackend.onrender.com/api${url}`
+      `https://xeno-backend-ovva.onrender.com/api${url}`
     );
     if (!response.ok) {
       throw new Error(`Error: ${response.statusText}`);

@@ -3,7 +3,7 @@ import styles from "./Login.module.css";
 
 const Login = ({ onLogin }) => {
   const handleGoogleLogin = () => {
-    window.location.href = `https://shreycrmbackend.onrender.com/api/auth/google`;
+    window.location.href = `https://xeno-backend-ovva.onrender.com/api/auth/google`;
     onLogin();
   };
 
