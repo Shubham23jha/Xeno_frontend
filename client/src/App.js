@@ -17,7 +17,7 @@ const App = () => {
     const checkAuthStatus = async () => {
       try {
         console.log("Checking authentication status...");
-        const response = await fetch("https://xeno-backend-ovva.onrender.com/api/auth/status", {
+        const response = await fetch("https://shreycrmbackend.onrender.com/api/auth/status", {
           credentials: "include",
         });
         console.log("Response from auth status:", response);
@@ -37,7 +37,7 @@ const App = () => {
   const handleLogout = async () => {
     try {
       console.log("Initiating logout...");
-      const response = await fetch("https://xeno-backend-ovva.onrender.com/api/auth/logout", {
+      const response = await fetch("https://shreycrmbackend.onrender.com/api/auth/logout", {
         method: "POST",
         credentials: "include", // Include credentials if using sessions/cookies
       });
