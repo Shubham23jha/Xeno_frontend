@@ -167,9 +167,9 @@
 }
 
 .logical-operator-field button {
-  background-color: #158aff;
+  background-color:  #43bb16;
   color: white;
-  border: 2px solid #158aff;
+  border: 2px solid  #43bb16;
   padding: 8px 12px;
   border-radius: 5px;
   cursor: pointer;
@@ -177,7 +177,7 @@
 }
 
 .logical-operator-field button:hover {
-  background-color: #158aff;
+  background-color:  #43bb16;
 }
 
 .message-field {
@@ -185,7 +185,7 @@
 }
 
 .submit-button button {
-  background-color: #158aff;
+  background-color:  #43bb16;
   color: white;
   border: none;
   padding: 10px 20px;

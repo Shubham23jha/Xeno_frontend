@@ -22,14 +22,14 @@
 }
 
 .input-field:focus {
-  border-color: #158aff;
+  border-color:  #43bb16;
   outline: none;
   box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
 .submit-button {
   padding: 15px 30px;
-  background-color: #158aff;
+  background-color:  #43bb16;
   color: white;
   border: none;
   border-radius: 5px;
@@ -40,7 +40,7 @@
 }
 
 .submit-button:hover {
-  background-color: #158aff;
+  background-color:  #43bb16;
 }
 
 .error {
@@ -53,7 +53,7 @@
   color: #333;
   text-align: center;
   margin-bottom: 1.5rem;
-  border-bottom: 2px solid #158aff;
+  border-bottom: 2px solid  #43bb16;
   padding-bottom: 0.5rem;
   margin-top: -20px;
 }
