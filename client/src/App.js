@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Login from "./components/Auth/Login";
 import Home from "./pages/Home";
+import AuthSuccess from "./components/Auth/authSuccess";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -66,6 +67,10 @@ const App = () => {
           <Route
             path="/login"
             element={<Login onLogin={() => setIsAuthenticated(true)} />}
+          />
+          <Route
+            path="/auth/success"
+            element={<AuthSuccess onSuccess={() => setIsAuthenticated(true)} />}
           />
           <Route
             path="/home/*"
