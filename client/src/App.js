@@ -7,44 +7,39 @@ import {
 } from "react-router-dom";
 import Login from "./components/Auth/Login";
 import Home from "./pages/Home";
-import AuthSuccess from "./components/Auth/authSuccess";
+import AuthSuccess from "./components/Auth/AuthSuccess";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [profile, setProfile] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const checkAuthStatus = async () => {
-      try {
-        console.log("Checking authentication status...");
-        const response = await fetch("https://shreycrmbackend.onrender.com/api/auth/status", {
-          credentials: "include",
-        });
-        console.log("Response from auth status:", response);
-        const data = await response.json();
-        console.log("Authentication data:", data);
-        setIsAuthenticated(data.isAuthenticated);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error checking auth status:", error);
-        setLoading(false);
-      }
-    };
+    const storedIsAuthenticated = localStorage.getItem("isAuthenticated");
+    const storedProfile = localStorage.getItem("profile");
 
-    checkAuthStatus();
+    setIsAuthenticated(JSON.parse(storedIsAuthenticated));
+    setProfile(JSON.parse(storedProfile));
+
+    setLoading(false);
   }, []);
 
+  // Function to handle logout
   const handleLogout = async () => {
     try {
-      console.log("Initiating logout...");
-      const response = await fetch("https://shreycrmbackend.onrender.com/api/auth/logout", {
-        method: "POST",
-        credentials: "include", // Include credentials if using sessions/cookies
-      });
-      console.log("Response from logout:", response);
+      const response = await fetch(
+        `https://shreycrmbackend.onrender.com/api/auth/logout`,
+        {
+          method: "POST",
+          credentials: "include",
+        }
+      );
       if (response.ok) {
         console.log("Logout successful");
-        setIsAuthenticated(false); // Update React state after successful logout
+        setIsAuthenticated(false);
+        setProfile({});
+        localStorage.removeItem("isAuthenticated");
+        localStorage.removeItem("profile");
       } else {
         console.error("Logout failed:", await response.text());
       }
@@ -54,11 +49,8 @@ const App = () => {
   };
 
   if (loading) {
-    console.log("Loading...");
     return <div>Loading...</div>;
   }
-
-  console.log("Rendering main app...");
 
   return (
     <Router>
@@ -76,7 +68,7 @@ const App = () => {
             path="/home/*"
             element={
               isAuthenticated ? (
-                <Home onLogout={handleLogout} />
+                <Home onLogout={handleLogout} profile={profile} />
               ) : (
                 <Navigate to="/login" />
               )

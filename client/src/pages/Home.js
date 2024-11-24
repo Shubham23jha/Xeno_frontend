@@ -1,18 +1,19 @@
-import React from 'react';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
-import CustomerForm from '../components/DataIngestion/CustomerForm';
-import OrderForm from '../components/DataIngestion/OrderForm';
-import AudienceForm from '../components/DataIngestion/AudienceForm';
-import CampaignList from '../components/CampaignListing/CampaignList';
-import HomePage from '../pages/HomePage'; // Import the HomePage component
-import './Home.css';
+import React from "react";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import CustomerForm from "../components/Ingestion/CustomerForm";
+import OrderForm from "../components/Ingestion/OrderForm";
+import AudienceForm from "../components/Ingestion/AudienceForm";
+import CampaignList from "../components/CampaignListing/CampaignList";
+import ListCustomerslist from "../components/ListCustomerslist";
+import HomePage from "../pages/HomePage";
+import "./Home.css";
 
-const Home = ({ onLogout }) => {
+const Home = ({ profile, onLogout }) => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await onLogout(); // Wait for logout operation to complete
-    navigate('/login', { replace: true }); // Navigate to login page immediately
+    await onLogout();
+    navigate("/login", { replace: true });
   };
 
   return (
@@ -21,6 +22,9 @@ const Home = ({ onLogout }) => {
         <ul>
           <li>
             <Link to="/home/customers">Create Customer</Link>
+          </li>
+          <li>
+            <Link to="/home/listCustomers">Check Customer</Link>
           </li>
           <li>
             <Link to="/home/orders">Create Order</Link>
@@ -40,10 +44,12 @@ const Home = ({ onLogout }) => {
       <div className="content">
         <Routes>
           <Route path="/customers" element={<CustomerForm />} />
+          <Route path="/listCustomers" element={<ListCustomerslist />} />
           <Route path="/orders" element={<OrderForm />} />
+          <Route path="/order/:customerId" element={<OrderForm />} />
           <Route path="/audience" element={<AudienceForm />} />
           <Route path="/campaigns" element={<CampaignList />} />
-          <Route path="/" element={<HomePage />} /> {/* Add this route */}
+          <Route path="/" element={<HomePage Profile={profile} />} />
         </Routes>
       </div>
     </div>

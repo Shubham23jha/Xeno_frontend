@@ -1,12 +1,46 @@
-import axios from 'axios';
+// Helper function to handle the POST request with JSON data
+const postRequest = async (url, data) => {
+  try {
+    const response = await fetch(
+      `https://shreycrmbackend.onrender.com/api${url}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error in POST request:", error);
+    throw error;
+  }
+};
 
-const API_BASE_URL = 'https://xeno-backend-ovva.onrender.com/api';
+// Helper function to handle the GET request
+const getRequest = async (url) => {
+  try {
+    const response = await fetch(
+      `https://shreycrmbackend.onrender.com/api${url}`
+    );
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error in GET request:", error);
+    throw error;
+  }
+};
 
-const api = axios.create({
-  baseURL: API_BASE_URL,
-});
-
-export const createCustomer = (customerData) => api.post('/customers', customerData);
-export const createOrder = (orderData) => api.post('/orders', orderData);
-export const createAudience = (audienceData) => api.post('/campaigns/audience', audienceData);
-export const getCampaigns = () => api.get('/campaigns/')
+export const createCustomer = (customerData) =>
+  postRequest(`/customers`, customerData);
+export const createOrder = (orderData) => postRequest(`/orders`, orderData);
+export const createAudience = (audienceData) =>
+  postRequest(`/campaigns/audience`, audienceData);
+export const getCampaigns = () => getRequest(`/campaigns/`);
+export const getCustomers = () => getRequest(`/customers`);

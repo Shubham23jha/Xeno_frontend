@@ -1,7 +1,4 @@
-// src/contexts/AuthContext.js
-
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
 
@@ -10,22 +7,20 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is authenticated
-    const checkAuthStatus = async () => {
-      try {
-        const response = await axios.get('/api/auth/status');
-        setIsAuthenticated(response.data.isAuthenticated);
-      } catch (error) {
-        setIsAuthenticated(false);
-      }
-      setLoading(false);
-    };
+    const storedIsAuthenticated = localStorage.getItem("isAuthenticated");
+    const storedProfile = localStorage.getItem("profile");
 
-    checkAuthStatus();
+    if (storedIsAuthenticated && storedProfile) {
+      setIsAuthenticated(JSON.parse(storedIsAuthenticated));
+    }
+
+    setLoading(false);
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, loading }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, setIsAuthenticated, loading }}
+    >
       {children}
     </AuthContext.Provider>
   );
