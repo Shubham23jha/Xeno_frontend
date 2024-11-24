@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Login from "./components/Auth/Login";
 import Home from "./pages/Home";
-import AuthSuccess from "./components/Auth/AuthSuccess";
+import AuthSuccess from "./components/Auth/Success";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
