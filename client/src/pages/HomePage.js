@@ -13,7 +13,7 @@ const HomePage = () => {
             <strong>Create Customer Button:</strong> To create a new user.
           </div>
         </li>
-        <li>
+       <li>
           <FaClipboardList className="icon" />
           <div className="content">
             <strong>Create Order Button:</strong> Create an order based on a user. Collects total spend, number of visits, and last visited metrics.
